@@ -6,7 +6,7 @@ const Banner = () => {
             <div className="relative w-full h-[80vh]">
                 {/* Video Background */}
                 <video autoPlay loop muted className="w-full h-full object-cover">
-                    {/* <source className='w-full' src="https://res.cloudinary.com/dehz2y6fq/video/upload/v1715343868/video_s6prca.mp4" type="video/mp4" /> */}
+                    <source className='w-full' src="https://res.cloudinary.com/dehz2y6fq/video/upload/v1715343868/video_s6prca.mp4" type="video/mp4" />
                     
                 </video>
 
