@@ -17,14 +17,28 @@ const Navbar = () => {
                 : isPending
                     ? "text-white flex items-center justify-center gap-1 font-semibold text-xl mulish"
                     : "text-white flex items-center justify-center gap-1 font-semibold text-xl mulish"
-        } ><a>Home</a><IoCaretDownSharp className='text-lg text-yellow-500 mt-2' /></NavLink>
+        } ><a>Home</a><IoCaretDownSharp className='text-sm text-yellow-500 mt-2' /></NavLink>
         <NavLink to="/bookings" className={({ isActive, isPending }) =>
             isActive
                 ? "text-yellow-500 font-medium text-xl eb-serif border-b-2 flex items-center justify-center gap-1  border-yellow-500"
                 : isPending
                     ? "text-white flex items-center justify-center gap-1 font-semibold text-xl mulish"
                     : "text-white flex items-center justify-center gap-1 font-semibold text-xl mulish"
-        }><a>My Bookings</a><IoCaretDownSharp className='text-lg text-yellow-500 mt-2' /></NavLink>
+        }><a>My Bookings</a><IoCaretDownSharp className='text-sm text-yellow-500 mt-2' /></NavLink>
+        <NavLink to="/rooms" className={({ isActive, isPending }) =>
+            isActive
+                ? "text-yellow-500 font-medium text-xl eb-serif border-b-2 flex items-center justify-center gap-1  border-yellow-500"
+                : isPending
+                    ? "text-white flex items-center justify-center gap-1 font-semibold text-xl mulish"
+                    : "text-white flex items-center justify-center gap-1 font-semibold text-xl mulish"
+        }><a>Rooms</a><IoCaretDownSharp className='text-sm text-yellow-500 mt-2' /></NavLink>
+        <NavLink to="/addRoom" className={({ isActive, isPending }) =>
+            isActive
+                ? "text-yellow-500 font-medium text-xl eb-serif border-b-2 flex items-center justify-center gap-1  border-yellow-500"
+                : isPending
+                    ? "text-white flex items-center justify-center gap-1 font-semibold text-xl mulish"
+                    : "text-white flex items-center justify-center gap-1 font-semibold text-xl mulish"
+        }><a>Add Rooms</a><IoCaretDownSharp className='text-sm text-yellow-500 mt-2' /></NavLink>
 
         <NavLink to="/about" className={({ isActive, isPending }) =>
             isActive
@@ -32,14 +46,14 @@ const Navbar = () => {
                 : isPending
                     ? "text-white flex items-center justify-center gap-1 font-semibold text-xl mulish"
                     : "text-white flex items-center justify-center gap-1 font-semibold text-xl mulish"
-        }><a>About Us</a><IoCaretDownSharp className='text-lg text-yellow-500 mt-2' /></NavLink>
+        }><a>About Us</a><IoCaretDownSharp className='text-sm text-yellow-500 mt-2' /></NavLink>
         <NavLink to="/contact" className={({ isActive, isPending }) =>
             isActive
                 ? "text-yellow-500 font-medium text-xl eb-serif border-b-2 flex items-center justify-center gap-1  border-yellow-500"
                 : isPending
                     ? "text-white flex items-center justify-center gap-1 font-semibold text-xl mulish"
                     : "text-white flex items-center justify-center gap-1 font-semibold text-xl mulish"
-        }><a>Contact Us</a><IoCaretDownSharp className='text-lg text-yellow-500 mt-2' /></NavLink>
+        }><a>Contact Us</a><IoCaretDownSharp className='text-sm text-yellow-500 mt-2' /></NavLink>
     </>
 
     return <>
