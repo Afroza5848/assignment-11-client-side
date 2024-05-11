@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import login from '../../assets/image/login.json';
 import { useLottie } from "lottie-react";
 import logo from '../../assets/image/logo.png';
@@ -20,6 +20,8 @@ const Login = () => {
 
   const { signInUser, googleLogin } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -40,7 +42,7 @@ const Login = () => {
           text: "User Login Successfully.",
           icon: "success"
         });
-        // navigate(location?.state ? location.state : "/");
+        navigate(location?.state ? location.state : "/");
       })
       .catch(error => {
         console.error(error.message);
@@ -63,7 +65,7 @@ const Login = () => {
                 text: "User Login Successfully.",
                 icon: "success"
             });
-            // navigate(location?.state ? location.state : "/");
+            navigate(location?.state ? location.state : "/");
         })
 }
 
