@@ -1,12 +1,15 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-//import Swal from "sweetalert2";
+import Swal from "sweetalert2";
+
+//import axios from "axios";
 
 
 const AddRoom = () => {
     const {user} = useContext(AuthContext)
     const [feature , setFeature] = useState('');
     const [status,setStatus] = useState('');
+   
     const handleAddRoom = event => {
         event.preventDefault();
         const form = event.target;
@@ -22,17 +25,10 @@ const AddRoom = () => {
         const user_name = user?.displayName;
         const user_email = user?.email;
 
-        const items = { name, massage, photo1,photo2,photo3,photo4, price, size, offer,status,feature, user_name, user_email };
-        console.log(items);
+        const rooms = { name, massage, photo1,photo2,photo3,photo4, price, size, offer,status,feature, user_name, user_email };
+        console.log(rooms);
 
-        // fetch('https://jute-and-timber-zone-server.vercel.app/items', { credentials: 'include' }, {
-        //     method: "POST",
-        //     headers: {
-        //         'content-type': "application/json",
-        //     },
-        //     body: JSON.stringify(items)
-        // })
-        //     .then(res => res.json())
+        // axios.post('http://localhost:5000/rooms')
         //     .then(data => {
         //         if (data.insertedId) {
         //             Swal.fire({
@@ -43,6 +39,25 @@ const AddRoom = () => {
         //             form.reset();
         //         }
         //     })
+
+            fetch('http://localhost:5000/rooms', {
+                method: "POST",
+                headers:{
+                    'content-type': "application/json",
+                },
+                body: JSON.stringify(rooms)
+            })
+                .then(res => res.json())
+                .then(data => {
+                   if(data.insertedId){
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Add New Art&Craft item Successfully.",
+                        icon: "success"
+                    });
+                    form.reset();
+                   }
+                })
     }
     const handleFeature = e => {
         setFeature(e.target.value)
