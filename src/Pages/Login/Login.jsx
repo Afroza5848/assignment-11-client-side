@@ -132,9 +132,7 @@ const Login = () => {
                 htmlFor='LoggingEmailAddress'
               >
                 Email Address
-                <span onClick={() => setShowPassword(!showPassword)} className='absolute top-8 right-4 text-orange-600 text-xl'>
-                  {showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
-                </span>
+                
               </label>
               <input
                 id='LoggingEmailAddress'
@@ -146,7 +144,7 @@ const Login = () => {
               {errors.email && <span>This field is required</span>}
             </div>
 
-            <div className='mt-4'>
+            <div className='mt-4 relative'>
               <div className='flex justify-between'>
                 <label
                   className='block mb-2 text-sm font-medium text-gray-600 '
@@ -154,6 +152,9 @@ const Login = () => {
                 >
                   Password
                 </label>
+                <span onClick={() => setShowPassword(!showPassword)} className='absolute top-10 right-4 text-yellow-500 text-xl'>
+                  {showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
+                </span>
               </div>
 
               <input

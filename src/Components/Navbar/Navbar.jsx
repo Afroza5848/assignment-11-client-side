@@ -3,9 +3,13 @@ import logo from '../../assets/image/logo.png'
 import { IoCaretDownSharp } from "react-icons/io5";
 import { IoMdCall } from "react-icons/io";
 import { FaEnvelope } from "react-icons/fa";
+import { useContext } from 'react';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
     const navLink = <>
         <NavLink to="/" className={({ isActive, isPending }) =>
             isActive
@@ -49,15 +53,24 @@ const Navbar = () => {
                 <div className="flex-none">
 
                     <div className="dropdown dropdown-end flex justify-center items-center gap-4 ">
-                        <div className="space-x-3 flex  gap-2">
-                            <Link to="/login" className="px-4 py-2 rounded-md text-white border bg-transparent  hover:bg-white hover:text-yellow-500 eb-serif font-medium text-xl">Login</Link>
-                            <Link to="/register" className="px-4 py-2 rounded-md text-white border bg-transparent  hover:bg-white hover:text-yellow-500 eb-serif font-medium text-xl">Register</Link>
+                        <div>
+                            {
+                                user ? <Link to="/login" onClick={() => logOut()} className="px-4 py-2 rounded-md text-white border bg-transparent  hover:bg-white hover:text-yellow-500 eb-serif font-medium text-xl">Logout</Link>
+                                    :
+                                    <div className="space-x-3 flex  gap-2">
+                                        <Link to="/login" className="px-4 py-2 rounded-md text-white border bg-transparent  hover:bg-white hover:text-yellow-500 eb-serif font-medium text-xl">Login</Link>
+                                        <Link to="/register" className="px-4 py-2 rounded-md text-white border bg-transparent  hover:bg-white hover:text-yellow-500 eb-serif font-medium text-xl">Register</Link>
+                                    </div>
+                            }
                         </div>
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+
+                        {
+                            user && <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                                </div>
                             </div>
-                        </div>
+                        }
 
                     </div>
                 </div>
