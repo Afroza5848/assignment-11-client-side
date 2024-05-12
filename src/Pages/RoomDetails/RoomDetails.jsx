@@ -7,17 +7,19 @@ import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {  useRef } from 'react';
+import {  useRef, useState } from 'react';
 import axios from "axios";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 //import toast from "react-hot-toast";
 
 
 const RoomDetails = () => {
     const room = useLoaderData();
-    
+    const [startDate, setStartDate] = useState(new Date());
     
     console.table(room);
-    const {_id, name, massage, photo1, photo2, photo3, photo4, price, size, offer,status } = room;
+    const {_id, name, massage, photo1, photo2, photo3, photo4, price, size, offer,status,user_email,user_name } = room;
     
     // swiper
     const progressCircle = useRef(null);
@@ -32,11 +34,31 @@ const RoomDetails = () => {
         // if(status === "Unavailable"){
         //     toast.success('Already Booked!')
         // }
+        // create my object
+        const myRoom = {
+            name,
+            massage,
+            photo1, 
+            photo2,
+            photo3,
+            photo4,
+            price,
+            size,
+            offer,
+            status,
+            user_email,
+            user_name,
+            startDate
+        }
+        axios.post('http://localhost:5000/bookings', myRoom)
+        .then(data => {
+            console.log(data.data);
+        })
     }
 
     return (
-        <div className="container mx-auto px-2">
-            <div className="rounded-md shadow-md  dark:bg-gray-50 dark:text-gray-800">
+        <div className="container mx-auto px-2 grid lg:grid-cols-4 grid-cols-1 gap-6">
+            <div className="rounded-md shadow-md col-span-3  dark:bg-gray-50 dark:text-gray-800">
                 <div className="flex items-center justify-between p-3">
                     <div className="flex items-center space-x-2">
                         <img src="https://source.unsplash.com/50x50/?portrait" alt="" className="object-cover object-center w-8 h-8 rounded-full shadow-sm dark:bg-gray-500 dark:border-gray-300" />
@@ -163,6 +185,12 @@ const RoomDetails = () => {
                         </dialog>
                     </div>
                 </div>
+            </div>
+            <div className="col-span-1 bg-gray-100 p-10 rounded shadow-lg">
+                    <div className="">
+                        <h2 className="text-xl pb-1 mulish">select Booking Date:</h2>
+                        <DatePicker className="w-full rounded border px-4 py-3" selected={startDate} onChange={(date) => setStartDate(date)} />
+                    </div>
             </div>
         </div>
     );

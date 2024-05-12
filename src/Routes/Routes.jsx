@@ -8,6 +8,7 @@ import AddRoom from "../Pages/AddRoom/AddRoom";
 import Rooms from "../Pages/Rooms/Rooms";
 import RoomDetails from "../Pages/RoomDetails/RoomDetails";
 import PrivateRoute from "./PrivateRoute";
+import MyBookings from "../Pages/MyBookings/MyBookings";
 
 
   const router = createBrowserRouter([
@@ -42,6 +43,10 @@ import PrivateRoute from "./PrivateRoute";
             <RoomDetails></RoomDetails>
             </PrivateRoute>,
           loader: ({params})=> fetch(`http://localhost:5000/rooms/${params.id}`)
+        },
+        {
+          path: "/bookings",
+          element: <PrivateRoute><MyBookings></MyBookings></PrivateRoute>
         }
       ]
     },
