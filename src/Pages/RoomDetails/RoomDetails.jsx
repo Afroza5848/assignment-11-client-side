@@ -1,9 +1,31 @@
-import { useLoaderData } from "react-router-dom";
 
+import { useLoaderData } from "react-router-dom";
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { useRef } from 'react';
+//import axios from "axios";
 
 const RoomDetails = () => {
     const room = useLoaderData();
     console.table(room);
+    const { name, massage, photo1, photo2, photo3, photo4, price, size, offer, status } = room || {};
+    // swiper
+    const progressCircle = useRef(null);
+    const progressContent = useRef(null);
+    const onAutoplayTimeLeft = (s, time, progress) => {
+        progressCircle.current.style.setProperty('--progress', 1 - progress);
+        progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+    };
+    // const handleConfirm = (id,preStatus,newStatus) => {
+    //     document.getElementById('book').disabled = true;
+    //     axios.patch(`http://localhost:5000/rooms/${id}`, {newStatus})
+    // }
+
     return (
         <div className="container mx-auto px-2">
             <div className="rounded-md shadow-md  dark:bg-gray-50 dark:text-gray-800">
@@ -23,7 +45,49 @@ const RoomDetails = () => {
                         </svg>
                     </button>
                 </div>
-                <img src="https://source.unsplash.com/301x301/?random" alt="" className="object-cover object-center w-full h-[430px]  dark:bg-gray-500" />
+                {/* <img src="https://source.unsplash.com/301x301/?random" alt="" className="object-cover object-center w-full h-[430px]  dark:bg-gray-500" /> */}
+                {/* swiper */}
+
+                <Swiper
+                    spaceBetween={10}
+                    centeredSlides={true}
+                    autoplay={{
+                        delay: 4000,
+                        disableOnInteraction: false,
+                    }}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    navigation={true}
+                    loop={true}
+                    modules={[Autoplay, Pagination, Navigation]}
+                    onAutoplayTimeLeft={onAutoplayTimeLeft}
+                    className="mySwiper"
+                >
+                    <SwiperSlide>
+                        <img className="md:h-[60vh] h-[40vh] w-full rounded" src={photo1} alt="" />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <img className="md:h-[60vh] h-[40vh] w-full rounded" src={photo2} alt="" />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <img className="md:h-[60vh] h-[40vh] w-full rounded" src={photo3} alt="" />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <img className="md:h-[60vh] h-[40vh] w-full rounded" src={photo4} alt="" />
+                    </SwiperSlide>
+
+
+                    <div className="autoplay-progress w-12 h-12 absolute bottom-12 z-20 right-4 bg-transparent" slot="container-end">
+                        <svg viewBox="0 0 48 48" ref={progressCircle}>
+                            <circle cx="24" cy="24" ></circle>
+                        </svg>
+                        <span className="border-2 border-slate-900 px-3 py-2 rounded-full" ref={progressContent}></span>
+                    </div>
+                </Swiper>
+
+                {/* swiper */}
+
                 <div className="p-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
@@ -49,24 +113,47 @@ const RoomDetails = () => {
                             </svg>
                         </button>
                     </div>
-                    <div className="flex flex-wrap items-center pt-3 pb-1">
-                        <div className="flex items-center space-x-2">
-                            <div className="flex -space-x-1">
-                                <img alt="" className="w-5 h-5 border rounded-full dark:bg-gray-500 dark:border-gray-100" src="https://source.unsplash.com/40x40/?portrait?1" />
-                                <img alt="" className="w-5 h-5 border rounded-full dark:bg-gray-500 dark:border-gray-100" src="https://source.unsplash.com/40x40/?portrait?2" />
-                                <img alt="" className="w-5 h-5 border rounded-full dark:bg-gray-500 dark:border-gray-100" src="https://source.unsplash.com/40x40/?portrait?3" />
-                            </div>
-                            <span className="text-sm">Liked by
-                                <span className="font-semibold">Mamba UI</span>and
-                                <span className="font-semibold">86 others</span>
-                            </span>
-                        </div>
+                    <div>
+                        <h2 className="text-5xl slab font-bold">{name}</h2>
+                        <p>{massage}</p>
+
                     </div>
                     <div className="space-y-3">
-                        <p className="text-sm">
-                            <span className="text-base font-semibold">leroy_jenkins72</span>Nemo ea quasi debitis impedit!
+                        <p className="text-2xl">
+                            For 1 Night
+                            <span className="text-4xl font-semibold text-yellow-500 slab"> BDT {price}</span>
                         </p>
-                        <input type="text" placeholder="Add a comment..." className="w-full py-0.5 dark:bg- border-none rounded text-sm pl-0 dark:text-gray-800" />
+                        <p className="text-xl">
+                            Room Size :
+                            <span className="text-2xl font-semibold text-yellow-500 slab"> {size} Sq Fit </span>
+                        </p>
+                        <p className="text-2xl">
+                            Availablity :
+                            <span className="text-xl font-semibold text-white px-3 py-1 ml-4 bg-green-500 rounded slab"> {status}  </span>
+                        </p>
+                        <p className="text-2xl">
+                            Special Offer :
+                            <span className="text-xl font-semibold text-yellow-500 px-3  ml-2  rounded slab"> {offer ? offer : 'No Offer Available'}  </span>
+                        </p>
+
+                        {/* Open the modal using document.getElementById('ID').showModal() method */}
+                        <button id="book" className="btn px-5 py-3 bg-yellow-500" onClick={() => document.getElementById('my_modal_1').showModal()}>Book Now</button>
+                        <dialog id="my_modal_1" className="modal">
+                            <div className="modal-box">
+                                <h3 className="font-bold text-lg">{name}</h3>
+                                <p className="py-4">{massage}</p>
+                                <p className="text-2xl">
+                                    For 1 Night
+                                    <span className="text-4xl font-semibold text-yellow-500 slab"> BDT {price}</span>
+                                </p>
+                                <div className="modal-action">
+                                    <form method="dialog">
+                                        {/* if there is a button in form, it will close the modal  */}
+                                    {/* <button onClick={() => handleConfirm(_id,status,'Unavailable')} className="btn bg-yellow-600">Confirm</button> */}
+                                    </form>
+                                </div>
+                            </div>
+                        </dialog>
                     </div>
                 </div>
             </div>
