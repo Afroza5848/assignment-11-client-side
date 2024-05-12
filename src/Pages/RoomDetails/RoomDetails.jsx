@@ -7,13 +7,18 @@ import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useRef } from 'react';
-//import axios from "axios";
+import {  useRef } from 'react';
+import axios from "axios";
+//import toast from "react-hot-toast";
+
 
 const RoomDetails = () => {
     const room = useLoaderData();
+    
+    
     console.table(room);
-    const { name, massage, photo1, photo2, photo3, photo4, price, size, offer, status } = room || {};
+    const {_id, name, massage, photo1, photo2, photo3, photo4, price, size, offer,status } = room;
+    
     // swiper
     const progressCircle = useRef(null);
     const progressContent = useRef(null);
@@ -21,10 +26,13 @@ const RoomDetails = () => {
         progressCircle.current.style.setProperty('--progress', 1 - progress);
         progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     };
-    // const handleConfirm = (id,preStatus,newStatus) => {
-    //     document.getElementById('book').disabled = true;
-    //     axios.patch(`http://localhost:5000/rooms/${id}`, {newStatus})
-    // }
+    const handleConfirm = (id,preStatus,status) => {
+        axios.patch(`http://localhost:5000/rooms/${id}`, {status})
+        // document.getElementById('book').disabled = true;
+        // if(status === "Unavailable"){
+        //     toast.success('Already Booked!')
+        // }
+    }
 
     return (
         <div className="container mx-auto px-2">
@@ -45,8 +53,7 @@ const RoomDetails = () => {
                         </svg>
                     </button>
                 </div>
-                {/* <img src="https://source.unsplash.com/301x301/?random" alt="" className="object-cover object-center w-full h-[430px]  dark:bg-gray-500" /> */}
-                {/* swiper */}
+              
 
                 <Swiper
                     spaceBetween={10}
@@ -128,7 +135,7 @@ const RoomDetails = () => {
                             <span className="text-2xl font-semibold text-yellow-500 slab"> {size} Sq Fit </span>
                         </p>
                         <p className="text-2xl">
-                            Availablity :
+                            Availability :
                             <span className="text-xl font-semibold text-white px-3 py-1 ml-4 bg-green-500 rounded slab"> {status}  </span>
                         </p>
                         <p className="text-2xl">
@@ -149,7 +156,7 @@ const RoomDetails = () => {
                                 <div className="modal-action">
                                     <form method="dialog">
                                         {/* if there is a button in form, it will close the modal  */}
-                                    {/* <button onClick={() => handleConfirm(_id,status,'Unavailable')} className="btn bg-yellow-600">Confirm</button> */}
+                                    <button onClick={() => handleConfirm(_id,status,'Unavailable')} className="btn bg-yellow-600">Confirm</button>
                                     </form>
                                 </div>
                             </div>
