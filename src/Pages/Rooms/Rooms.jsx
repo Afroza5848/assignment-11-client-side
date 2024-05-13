@@ -14,7 +14,7 @@ const Rooms = () => {
         }
         getData()
     },[])
-
+   
     return (
         <div className="container mx-auto px-2 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7 my-8">
             {

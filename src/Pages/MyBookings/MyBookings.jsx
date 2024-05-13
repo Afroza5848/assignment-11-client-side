@@ -9,8 +9,8 @@ import "react-datepicker/dist/react-datepicker.css";
 const MyBookings = () => {
     const [startDate, setStartDate] = useState(new Date());
     const { user } = useContext(AuthContext)
-    const [control, setControl] = useState(false)
     const [data, setData] = useState([]);
+    const [control, setControl] = useState(data)
     useEffect(() => {
           axios.get(`http://localhost:5000/bookings/${user.email}`)
             .then(data => {
@@ -21,7 +21,7 @@ const MyBookings = () => {
     const handleCancel = _id => {
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "You won't be Cancel this!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -36,11 +36,11 @@ const MyBookings = () => {
                         if (data.data.deletedCount > 0) {
                             setControl(!control);
                             Swal.fire({
-                                title: "Deleted!",
-                                text: "Your Item has been deleted.",
+                                title: "Cancel!",
+                                text: "Your Ordered Canceled.",
                                 icon: "success"
                             });
-
+                           // const remaining = control.filter()
                         }
                     })
             }
@@ -101,12 +101,13 @@ const MyBookings = () => {
                                 <td className=" flex flex-col items-center justify-center">
                                     <div className=" flex items-center gap-3 justify-center lg:flex-row flex-col lg:mt-10">
                                         <button onClick={() => handleCancel(booking._id)} className="btn btn-error text-white">Cancel</button>
+                                        {/* modal update */}
                                         <button className="btn btn-success text-white" onClick={() => document.getElementById('my_modal_1').showModal()}>Update Date</button>
                                         <dialog id="my_modal_1" className="modal">
                                             <div className="modal-box">
                                                 <div className="">
                                                     <h2 className="text-xl pb-1 mulish">select Booking Date:</h2>
-                                                    <form onSubmit={handleUpdate}>
+                                                    <form onSubmit={handleUpdate} className=" flex items-center gap-3">
                                                         <DatePicker className="w-full rounded border px-4 py-3" selected={startDate} onChange={(date) => setStartDate(date)} />
                                                         <input className="btn btn-success" type="submit" value="Update" />
                                                     </form>
