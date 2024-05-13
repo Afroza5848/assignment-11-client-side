@@ -7,20 +7,23 @@ import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {  useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
+import PostedReview from "../../Components/PostedReview/PostedReview";
 //import toast from "react-hot-toast";
 
 
 const RoomDetails = () => {
     const room = useLoaderData();
     const [startDate, setStartDate] = useState(new Date());
-    
+    const { user } = useContext(AuthContext);
     console.table(room);
-    const {_id, name, massage, photo1, photo2, photo3, photo4, price, size, offer,status,user_email,user_name } = room;
-    
+    const { _id, name, massage, photo1, photo2, photo3, photo4, price, size, offer, status } = room;
+    const date = new Date(startDate).toLocaleDateString();
     // swiper
     const progressCircle = useRef(null);
     const progressContent = useRef(null);
@@ -28,8 +31,13 @@ const RoomDetails = () => {
         progressCircle.current.style.setProperty('--progress', 1 - progress);
         progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     };
-    const handleConfirm = (id,preStatus,status) => {
-        axios.patch(`http://localhost:5000/rooms/${id}`, {status})
+
+    const handleConfirm = (id, preStatus, status) => {
+        axios.patch(`http://localhost:5000/rooms/${id}`, { status })
+            .then(res => {
+                console.log(res.data);
+                toast.success('Booked confirmed!')
+            })
         // document.getElementById('book').disabled = true;
         // if(status === "Unavailable"){
         //     toast.success('Already Booked!')
@@ -38,7 +46,7 @@ const RoomDetails = () => {
         const myRoom = {
             name,
             massage,
-            photo1, 
+            photo1,
             photo2,
             photo3,
             photo4,
@@ -46,14 +54,14 @@ const RoomDetails = () => {
             size,
             offer,
             status,
-            user_email,
-            user_name,
-            startDate
+            user_email: user?.email,
+            user_name: user?.displayName,
+            date
         }
         axios.post('http://localhost:5000/bookings', myRoom)
-        .then(data => {
-            console.log(data.data);
-        })
+            .then(data => {
+                console.log(data.data);
+            })
     }
 
     return (
@@ -75,7 +83,7 @@ const RoomDetails = () => {
                         </svg>
                     </button>
                 </div>
-              
+
 
                 <Swiper
                     spaceBetween={10}
@@ -178,7 +186,7 @@ const RoomDetails = () => {
                                 <div className="modal-action">
                                     <form method="dialog">
                                         {/* if there is a button in form, it will close the modal  */}
-                                    <button onClick={() => handleConfirm(_id,status,'Unavailable')} className="btn bg-yellow-600">Confirm</button>
+                                        <button onClick={() => handleConfirm(_id, status, 'Unavailable')} className="btn bg-yellow-600">Confirm</button>
                                     </form>
                                 </div>
                             </div>
@@ -187,10 +195,14 @@ const RoomDetails = () => {
                 </div>
             </div>
             <div className="col-span-1 bg-gray-100 p-10 rounded shadow-lg">
-                    <div className="">
-                        <h2 className="text-xl pb-1 mulish">select Booking Date:</h2>
-                        <DatePicker className="w-full rounded border px-4 py-3" selected={startDate} onChange={(date) => setStartDate(date)} />
-                    </div>
+                <div className="">
+                    <h2 className="text-xl pb-1 mulish">select Booking Date:</h2>
+                    <DatePicker className="w-full rounded border px-4 py-3" selected={startDate} onChange={(date) => setStartDate(date)} />
+                </div>
+
+                <div>
+                    <PostedReview></PostedReview>
+                </div>
             </div>
         </div>
     );
