@@ -6,7 +6,7 @@ const useRoomData = () => {
 
     useEffect(() => {
         const getData = async () => {
-            const {data} = await axios('http://localhost:5000/rooms')
+            const {data} = await axios('https://stay-spot.vercel.app/rooms')
             setRooms(data)
         }
         getData()

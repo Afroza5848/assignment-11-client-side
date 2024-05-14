@@ -33,7 +33,7 @@ const Review = () => {
         };
         console.log(review);
 
-        axios.post('http://localhost:5000/review', review)
+        axios.post('https://stay-spot.vercel.app/review', review)
             .then(res => {
                 console.log(res.data);
                 toast.success('Post Review Successfully');

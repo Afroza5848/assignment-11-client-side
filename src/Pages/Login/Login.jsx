@@ -62,7 +62,7 @@ const Login = () => {
         .then(result => {
             console.log(result.user);
             // token get------------
-            axios.post('http://localhost:5000/jwt', {email: result?.user?.email}, {
+            axios.post('https://stay-spot.vercel.app/jwt', {email: result?.user?.email}, {
               withCredentials: true})
               .then(res => {
                   console.log('token response',res.data);

@@ -40,7 +40,7 @@ const RoomDetails = () => {
     // });
 
     const handleConfirm = (id, preStatus, status) => {
-        axios.patch(`http://localhost:5000/rooms/${id}`, { status })
+        axios.patch(`https://stay-spot.vercel.app/rooms/${id}`, { status })
             .then(res => {
                 console.log(res.data);
                 toast.success('Booked confirmed!')
@@ -65,7 +65,7 @@ const RoomDetails = () => {
             user_name: user?.displayName,
             date
         }
-        axios.post('http://localhost:5000/bookings', myRoom)
+        axios.post('https://stay-spot.vercel.app/bookings', myRoom)
             .then(data => {
                 console.log(data.data);
             })

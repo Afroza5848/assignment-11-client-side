@@ -40,7 +40,7 @@ import MyBookings from "../Pages/MyBookings/MyBookings";
         {
           path: "/rooms/:id",
           element:<RoomDetails></RoomDetails>,
-          loader: ({params})=> fetch(`http://localhost:5000/rooms/${params.id}`)
+          loader: ({params})=> fetch(`https://stay-spot.vercel.app/rooms/${params.id}`)
         },
         {
           path: "/bookings",

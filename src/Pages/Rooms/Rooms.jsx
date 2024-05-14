@@ -9,7 +9,7 @@ const Rooms = () => {
 
     useEffect(() => {
         const getData = async () => {
-            const {data} = await axios('http://localhost:5000/rooms')
+            const {data} = await axios('https://stay-spot.vercel.app/rooms')
             setRooms(data)
         }
         getData()
@@ -18,7 +18,7 @@ const Rooms = () => {
     // posted review---------------------------------
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/review')
+        axios.get('https://stay-spot.vercel.app/review')
             .then(res => {
                 setReviews(res.data)
             })

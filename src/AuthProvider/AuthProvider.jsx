@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
     // logout
     const logOut = async() => {
         setLoading(true);
-        const {data} = await axios.get('http://localhost:5000/logOut', {withCredentials: true})
+        const {data} = await axios.get('https://stay-spot.vercel.app/logOut', {withCredentials: true})
         console.log(data);
         return signOut(auth);
     }
@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
             const loggedUser = { email: currentUser.email}
             if(currentUser){
-                axios.post('http://localhost:5000/jwt', loggedUser, {
+                axios.post('https://stay-spot.vercel.app/jwt', loggedUser, {
                     withCredentials: true})
                     .then(res => {
                         console.log('token response',res.data);

@@ -11,7 +11,7 @@ const MyBookings = () => {
     
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/bookings/${user.email}`,{withCredentials: true})
+        axios.get(`https://stay-spot.vercel.app/bookings/${user.email}`,{withCredentials: true})
             .then(data => {
                 setData(data.data)
             })

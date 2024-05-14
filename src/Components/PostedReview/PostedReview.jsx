@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const PostedReview = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/review')
+        axios.get('https://stay-spot.vercel.app/review')
             .then(res => {
                 setReviews(res.data)
             })

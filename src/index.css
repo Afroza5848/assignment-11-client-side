@@ -11,3 +11,8 @@
 .mulish{
     font-family: "Mulish", sans-serif;
 }
+
+.leaflet-container {
+    height: 100vh;
+    width: 100%;
+  }

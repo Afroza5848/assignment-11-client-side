@@ -9,7 +9,7 @@ const FeatureSec = ({ data }) => {
     const [features, setFeatures] = useState([]);
 
     // useEffect(() => {
-    //     axios.get(`http://localhost:5000/room/${data.feature}`)
+    //     axios.get(`https://stay-spot.vercel.app/room/${data.feature}`)
     //     .then(response => {
     //         setFeatures(response.data); // Access response data using response.data
     //     })

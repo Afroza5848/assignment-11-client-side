@@ -6,14 +6,14 @@ const Feature = () => {
     const [rooms, setRooms] = useState([]);
     useEffect(() => {
         const getData = async () => {
-            const { data } = await axios('http://localhost:5000/rooms')
+            const { data } = await axios('https://stay-spot.vercel.app/rooms')
             setRooms(data)
         }
         getData()
     }, [])
 
     //console.log(rooms[0].feature);
-    // axios.get(`http://localhost:5000/rooms/${rooms[]}`)
+    // axios.get(`https://stay-spot.vercel.app/rooms/${rooms[]}`)
     return (
         <>
             {

@@ -23,7 +23,7 @@ const Bookings = ({ booking }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/bookings/${_id}`)
+                axios.delete(`https://stay-spot.vercel.app/bookings/${_id}`)
                     .then(data => {
                         console.log(data.data);
                         if (data.data.deletedCount > 0) {
@@ -42,7 +42,7 @@ const Bookings = ({ booking }) => {
     const handleUpdate = (e) => {
         {/* Open the modal using document.getElementById('ID').showModal() method */ }
         e.preventDefault();
-        axios.patch(`http://localhost:5000/bookings/${booking._id}`, { startDate })
+        axios.patch(`https://stay-spot.vercel.app/bookings/${booking._id}`, { startDate })
             .then(data => {
                 console.log(data.data);
 

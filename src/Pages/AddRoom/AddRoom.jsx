@@ -28,7 +28,7 @@ const AddRoom = () => {
         const rooms = { name, massage, photo1,photo2,photo3,photo4, price, size, offer,status,feature, user_name, user_email };
         console.log(rooms);
 
-        // axios.post('http://localhost:5000/rooms')
+        // axios.post('https://stay-spot.vercel.app/rooms')
         //     .then(data => {
         //         if (data.insertedId) {
         //             Swal.fire({
@@ -40,7 +40,7 @@ const AddRoom = () => {
         //         }
         //     })
 
-            fetch('http://localhost:5000/rooms', {
+            fetch('https://stay-spot.vercel.app/rooms', {
                 method: "POST",
                 headers:{
                     'content-type': "application/json",
