@@ -3,15 +3,14 @@ import { useState } from "react";
 import Swal from 'sweetalert2';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-
 import PropTypes from 'prop-types';
 import Review from "../Review/Review";
 
 const Bookings = ({ booking }) => {
+    const { status, room_id } = booking;
     const [startDate, setStartDate] = useState(new Date());
     // handle delete------------------------
-    const handleCancel = _id => {
+    const handleCancel = (_id, room_id, preStatus, status) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be Cancel this!",
@@ -20,6 +19,7 @@ const Bookings = ({ booking }) => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
+            //  room available
         }).then((result) => {
             if (result.isConfirmed) {
 
@@ -27,12 +27,15 @@ const Bookings = ({ booking }) => {
                     .then(data => {
                         console.log(data.data);
                         if (data.data.deletedCount > 0) {
-                            Swal.fire({
-                                title: "Cancel!",
-                                text: "Your Ordered Canceled.",
-                                icon: "success"
-                            });
-                            // const remaining = control.filter()
+                            axios.patch(`https://stay-spot.vercel.app/room-s/${room_id}`, { status })
+                                .then(res => {
+                                    console.log(res.data);
+                                    Swal.fire({
+                                        title: "Cancel!",
+                                        text: "Your Ordered Canceled.",
+                                        icon: "success"
+                                    });
+                                })
                         }
                     })
             }
@@ -75,7 +78,7 @@ const Bookings = ({ booking }) => {
                 <td>{booking.date}</td>
                 <td className=" flex flex-col items-center justify-center">
                     <div className=" flex items-center gap-3 justify-center lg:flex-row flex-col lg:mt-10">
-                        <button onClick={() => handleCancel(booking._id)} className="btn btn-error text-white">Cancel</button>
+                        <button onClick={() => handleCancel(booking._id, room_id, status, 'Available')} className="btn btn-error text-white">Cancel</button>
                         {/* modal update */}
                         <button className="btn btn-success text-white" onClick={() => document.getElementById('my_modal_1').showModal()}>Update Date</button>
                         <dialog id="my_modal_1" className="modal">
@@ -96,8 +99,7 @@ const Bookings = ({ booking }) => {
                                 </div>
                             </div>
                         </dialog>
-                        {/* <button onClick={handleUpdate} className="btn btn-success text-white">Update</button> */}
-                        {/* <button className="btn bg-yellow-500 text-white">Add Review</button> */}
+
                         {/* You can open the modal using document.getElementById('ID').showModal() method */}
                         <button className="btn" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Review</button>
                         <dialog id="my_modal_3" className="modal">
@@ -119,7 +121,7 @@ const Bookings = ({ booking }) => {
 };
 
 Bookings.propTypes = {
-    booking:PropTypes.object
+    booking: PropTypes.object
 };
 
 export default Bookings;

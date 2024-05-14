@@ -16,7 +16,7 @@ const MyBookings = () => {
                 setData(data.data)
             })
     }, [user])
-   
+   console.log(data);
     return (
         <div className="container mx-auto px-2 my-8">
             <div className="overflow-x-auto">

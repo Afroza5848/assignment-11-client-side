@@ -4,21 +4,21 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
-const FeatureSec = ({ data }) => {
-    
+const FeatureSec = () => {
+
     const [features, setFeatures] = useState([]);
+    useEffect(() => {
+        axios.get(`https://stay-spot.vercel.app/rooms-s`)
+            .then(response => {
+                setFeatures(response.data); // Access response data using response.data
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, [])
+    
 
-    // useEffect(() => {
-    //     axios.get(`https://stay-spot.vercel.app/room/${data.feature}`)
-    //     .then(response => {
-    //         setFeatures(response.data); // Access response data using response.data
-    //     })
-    //     .catch(error => {
-    //         console.error('Error fetching data:', error);
-    //     });
-    // },[data.feature])
-    // console.log(features);
-
+    console.log(features);
     return (
         <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 container mx-auto'>
             {

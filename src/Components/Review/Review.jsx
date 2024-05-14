@@ -17,19 +17,21 @@ const Review = () => {
        
         // Generate timestamp
         const timestamp = Date.now();
-        const date = new Date(timestamp);
-        const day = date.getDate();
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        const seconds = date.getSeconds();
-        const formatDate = `${day}/${hours}:${minutes}:${seconds}`
-        console.log(formatDate);
+         const date = new Date(timestamp);
+        // const day = date.getDate();
+        // const hours = date.getHours();
+        // const minutes = date.getMinutes();
+        // const seconds = date.getSeconds();
+        // const formatDate = `${day}/${hours}:${minutes}:${seconds}`
+        // console.log(formatDate);
         // Create review object
+        console.log(date);
         const review = {
             username: user?.displayName,
             rating,
             comment,
-            formatDate
+            timestamp
+            
         };
         console.log(review);
 

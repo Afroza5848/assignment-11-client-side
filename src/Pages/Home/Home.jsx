@@ -1,5 +1,6 @@
+import AuthReview from "../../Components/AuthReview/AuthReview";
 import Banner from "../../Components/Banner/Banner";
-import Feature from "../../Components/Feature/Feature";
+import FeatureSec from "../../Components/Feature/FeatureSec";
 import Map from "../../Components/Map/Map";
 import Newsletter from "../../Components/NewsLetter/Newsletter";
 
@@ -8,8 +9,9 @@ const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <Feature></Feature>
+            <FeatureSec></FeatureSec>
             <Newsletter></Newsletter>
+            <AuthReview></AuthReview>
             <Map></Map>
         </div>
     );

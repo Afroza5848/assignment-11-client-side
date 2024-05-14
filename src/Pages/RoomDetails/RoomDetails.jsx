@@ -1,5 +1,5 @@
 
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -32,24 +32,13 @@ const RoomDetails = () => {
         progressCircle.current.style.setProperty('--progress', 1 - progress);
         progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     };
-    // book now button ------------------------------------
-    // document.getElementById('book').addEventListener('click', () => {
-    //     if (!user) {
-    //         navigate("/login")
-    //     }
-    // });
-
+   
     const handleConfirm = (id, preStatus, status) => {
         axios.patch(`https://stay-spot.vercel.app/rooms/${id}`, { status })
             .then(res => {
                 console.log(res.data);
                 toast.success('Booked confirmed!')
             })
-        // document.getElementById('book').disabled = true;
-        // if(status === "Unavailable"){
-        //     toast.success('Already Booked!')
-        // }
-        // create my object
         const myRoom = {
             name,
             massage,
@@ -63,7 +52,8 @@ const RoomDetails = () => {
             status,
             user_email: user?.email,
             user_name: user?.displayName,
-            date
+            date,
+            room_id:_id
         }
         axios.post('https://stay-spot.vercel.app/bookings', myRoom)
             .then(data => {
@@ -182,7 +172,7 @@ const RoomDetails = () => {
 
                         {/* Open the modal using document.getElementById('ID').showModal() method */}
 
-                        <button id="book" className="btn px-5 py-3 bg-yellow-500" onClick={() => document.getElementById('my_modal_1').showModal()}>Book Now</button>
+                       <Link to={user || "/login"}> <button id="book" className="btn px-5 py-3 bg-yellow-500" onClick={() => document.getElementById('my_modal_1').showModal()}>Book Now</button></Link>
 
                         <dialog id="my_modal_1" className="modal">
                             <div className="modal-box">

@@ -115,7 +115,7 @@ const AddRoom = () => {
                                 <label htmlFor="lastname" className="text-xl mulish">Featured</label>
                                 <select onChange={handleFeature} className="pb-8 w-full  rounded-md focus:ring focus:ring-opacity-75  focus:dark:ring-orange-600  dark:text-gray-900  bg-white pt-2 pl-2 ">
                                     <option className="" disabled selected>Select Feature</option>
-                                    <option value="Asa">Asa</option>
+                                    <option value="Yes">Yes</option>
                                     <option value="No">No</option>
                                 </select>
                             </div>
