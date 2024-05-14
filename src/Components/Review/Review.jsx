@@ -4,15 +4,17 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
-
 const Review = () => {
+
     const { user } = useContext(AuthContext);
     const [rating, setRating] = useState(1);
     const [comment, setComment] = useState('');
-
+    
     const handleSubmit = (event) => {
         event.preventDefault();
 
+
+       
         // Generate timestamp
         const timestamp = Date.now();
         const date = new Date(timestamp);

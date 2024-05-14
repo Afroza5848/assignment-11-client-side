@@ -1,5 +1,5 @@
 
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -18,10 +18,11 @@ import PostedReview from "../../Components/PostedReview/PostedReview";
 
 
 const RoomDetails = () => {
+    //const navigate = useNavigate()
     const room = useLoaderData();
     const [startDate, setStartDate] = useState(new Date());
     const { user } = useContext(AuthContext);
-    console.table(room);
+
     const { _id, name, massage, photo1, photo2, photo3, photo4, price, size, offer, status } = room;
     const date = new Date(startDate).toLocaleDateString();
     // swiper
@@ -31,6 +32,12 @@ const RoomDetails = () => {
         progressCircle.current.style.setProperty('--progress', 1 - progress);
         progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     };
+    // book now button ------------------------------------
+    // document.getElementById('book').addEventListener('click', () => {
+    //     if (!user) {
+    //         navigate("/login")
+    //     }
+    // });
 
     const handleConfirm = (id, preStatus, status) => {
         axios.patch(`http://localhost:5000/rooms/${id}`, { status })
@@ -174,7 +181,9 @@ const RoomDetails = () => {
                         </p>
 
                         {/* Open the modal using document.getElementById('ID').showModal() method */}
+
                         <button id="book" className="btn px-5 py-3 bg-yellow-500" onClick={() => document.getElementById('my_modal_1').showModal()}>Book Now</button>
+
                         <dialog id="my_modal_1" className="modal">
                             <div className="modal-box">
                                 <h3 className="font-bold text-lg">{name}</h3>

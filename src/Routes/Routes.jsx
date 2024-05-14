@@ -39,9 +39,7 @@ import MyBookings from "../Pages/MyBookings/MyBookings";
         },
         {
           path: "/rooms/:id",
-          element: <PrivateRoute>
-            <RoomDetails></RoomDetails>
-            </PrivateRoute>,
+          element:<RoomDetails></RoomDetails>,
           loader: ({params})=> fetch(`http://localhost:5000/rooms/${params.id}`)
         },
         {

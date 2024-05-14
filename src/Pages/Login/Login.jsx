@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import axios from "axios";
 
 
 const Login = () => {
@@ -60,6 +61,13 @@ const Login = () => {
     socialProvider()
         .then(result => {
             console.log(result.user);
+            // token get------------
+            axios.post('http://localhost:5000/jwt', {email: result?.user?.email}, {
+              withCredentials: true})
+              .then(res => {
+                  console.log('token response',res.data);
+              })
+
             Swal.fire({
                 title: "Good job!",
                 text: "User Login Successfully.",

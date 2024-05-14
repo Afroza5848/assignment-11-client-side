@@ -14,7 +14,17 @@ const Rooms = () => {
         }
         getData()
     },[])
-   console.log(rooms);
+    console.log(rooms);
+    // posted review---------------------------------
+    const [reviews, setReviews] = useState([]);
+    useEffect(() => {
+        axios.get('http://localhost:5000/review')
+            .then(res => {
+                setReviews(res.data)
+            })
+    }, [])
+    
+   
     return (
         <div className="container mx-auto px-2 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7 my-8">
             {
@@ -30,7 +40,7 @@ const Rooms = () => {
                                     <span>6 min ago</span>
                                 </div>
                                 <span className="absolute px-4 py-2 bg-[#949433b9] border border-gray-300 text-white slab top-2 left-3">Per Night Price ${room.price}</span>
-                                <span></span>
+                                <span>{reviews.length}</span>
                             </div>
 
                         </div>
