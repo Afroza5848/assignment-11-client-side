@@ -14,6 +14,7 @@ const Room = ({ room }) => {
                 setReviews(res.data)
             })
     }, [])
+   
     const reviewCount = reviews.filter(review => review.room_name === room.name)
     return (
         <div className="max-w-lg p-4 shadow-md dark:bg-gray-50 dark:text-gray-800">
@@ -35,8 +36,8 @@ const Room = ({ room }) => {
                 </div>
                 {
                     room.status === "Unavailable" ? <button className="btn bg-yellow-500" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Review</button>
-                    :
-                    <button className="btn bg-yellow-500" disabled onClick={() => document.getElementById('my_modal_3').showModal()}>Add Review</button>
+                        :
+                        <button className="btn bg-yellow-500" disabled onClick={() => document.getElementById('my_modal_3').showModal()}>Add Review</button>
                 }
                 <dialog id="my_modal_3" className="modal">
                     <div className="modal-box">

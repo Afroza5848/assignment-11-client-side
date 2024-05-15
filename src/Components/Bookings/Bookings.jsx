@@ -5,10 +5,14 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import PropTypes from 'prop-types';
 import Review from "../Review/Review";
+import toast from "react-hot-toast";
 
-const Bookings = ({ booking }) => {
+const Bookings = ({ booking,fetchBookings }) => {
+    //const [update,setUpdate] = (data);
     const { status, room_id,name } = booking;
     const [startDate, setStartDate] = useState(new Date());
+   
+   console.log(booking);
     // handle delete------------------------
     const handleCancel = (_id, room_id, preStatus, status) => {
         Swal.fire({
@@ -35,6 +39,7 @@ const Bookings = ({ booking }) => {
                                         text: "Your Ordered Canceled.",
                                         icon: "success"
                                     });
+                                    fetchBookings();
                                 })
                         }
                     })
@@ -45,10 +50,12 @@ const Bookings = ({ booking }) => {
     const handleUpdate = (e) => {
         {/* Open the modal using document.getElementById('ID').showModal() method */ }
         e.preventDefault();
+        console.log(startDate);
         axios.patch(`https://stay-spot.vercel.app/bookings/${booking._id}`, { startDate })
             .then(data => {
                 console.log(data.data);
-
+                fetchBookings(fetchBookings);
+                toast.success('update successfully')
             })
     }
 
@@ -75,7 +82,7 @@ const Bookings = ({ booking }) => {
                 </td>
                 <td>{booking.size} sq Ft</td>
                 <td>$ {booking.price}</td>
-                <td>{booking.date}</td>
+                <td>{booking.startDate}</td>
                 <td className=" flex flex-col items-center justify-center">
                     <div className=" flex items-center gap-3 justify-center lg:flex-row flex-col lg:mt-10">
                         <button onClick={() => handleCancel(booking._id, room_id, status, 'Available')} className="btn btn-error text-white">Cancel</button>
@@ -121,7 +128,9 @@ const Bookings = ({ booking }) => {
 };
 
 Bookings.propTypes = {
-    booking: PropTypes.object
+    booking: PropTypes.object,
+    fetchBookings:PropTypes.func
+    
 };
 
 export default Bookings;

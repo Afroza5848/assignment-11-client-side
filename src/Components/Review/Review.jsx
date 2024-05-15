@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-const timestamp = Date.now();
+
 // eslint-disable-next-line react/prop-types
 const Review = ({name}) => {
 

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 //import axios from "axios";
 
@@ -28,17 +29,6 @@ const AddRoom = () => {
         const rooms = { name, massage, photo1,photo2,photo3,photo4, price, size, offer,status,feature, user_name, user_email };
         console.log(rooms);
 
-        // axios.post('https://stay-spot.vercel.app/rooms')
-        //     .then(data => {
-        //         if (data.insertedId) {
-        //             Swal.fire({
-        //                 title: "Good job!",
-        //                 text: "Add New Art&Craft item Successfully.",
-        //                 icon: "success"
-        //             });
-        //             form.reset();
-        //         }
-        //     })
 
             fetch('https://stay-spot.vercel.app/rooms', {
                 method: "POST",
@@ -69,6 +59,9 @@ const AddRoom = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>AddRooms</title>
+            </Helmet>
             <section className="p-6 my-8 text-gray-900  py-10">
                 <form onSubmit={handleAddRoom} className="container flex flex-col mx-auto space-y-12">
                     <fieldset className="bg-[#cece4b19] border-2 border-yellow-400 shadow-xl lg:w-7/12 w-11/12 mx-auto p-8 rounded-md ">

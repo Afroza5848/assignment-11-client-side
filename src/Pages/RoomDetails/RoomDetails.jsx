@@ -7,24 +7,35 @@ import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import PostedReview from "../../Components/PostedReview/PostedReview";
+import { Helmet } from "react-helmet-async";
 //import toast from "react-hot-toast";
 
 
 const RoomDetails = () => {
     //const navigate = useNavigate()
+    
+
+    useEffect(() => {
+
+        getData()
+    }, [])
+    const getData = async () => {
+        const { data } = await axios('https://stay-spot.vercel.app/rooms')
+        console.log(data);
+    }
     const room = useLoaderData();
     const [startDate, setStartDate] = useState(new Date());
     const { user } = useContext(AuthContext);
 
     const { _id, name, massage, photo1, photo2, photo3, photo4, price, size, offer, status } = room;
-    const date = new Date(startDate).toLocaleDateString();
+    // const  = new Date(startDate).toLocaleDateString();
     // swiper
     const progressCircle = useRef(null);
     const progressContent = useRef(null);
@@ -38,6 +49,7 @@ const RoomDetails = () => {
             .then(res => {
                 console.log(res.data);
                 toast.success('Booked confirmed!')
+                getData();
             })
         const myRoom = {
             name,
@@ -52,7 +64,7 @@ const RoomDetails = () => {
             status,
             user_email: user?.email,
             user_name: user?.displayName,
-            date,
+            startDate,
             room_id:_id
         }
         axios.post('https://stay-spot.vercel.app/bookings', myRoom)
@@ -63,6 +75,9 @@ const RoomDetails = () => {
 
     return (
         <div className="container mx-auto px-2 grid lg:grid-cols-4 grid-cols-1 gap-6 my-12">
+            <Helmet>
+                <title>Room Details</title>
+            </Helmet>
             <div className="rounded-md shadow-md col-span-3  dark:bg-gray-50 dark:text-gray-800">
                 <div className="flex items-center justify-between p-3">
                     <div className="flex items-center space-x-2">
