@@ -22,6 +22,10 @@ const Map = () => {
     const hotelPosition = [51.505, -0.09];
     return (
         <div className='my-10'>
+            <div className='mt-14 mb-10'>
+                <h2 className='text-5xl slab text-center font-semibold '>Our Hotel Location</h2>
+                <p className='text-center'>Customer service is of utmost importance in every industry, but no more so than within the travel industry, including travel operators and hotels. <br /> SMS travel and hotel solutions are an effective way to maximise customer service and consumer satisfaction, allowing service providers.</p>
+            </div>
             <MapContainer center={hotelPosition} zoom={13} style={{ height: "70vh", width: "100%" }}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

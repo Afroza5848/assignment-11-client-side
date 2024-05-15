@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 const AuthReview = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        axios.get('https://stay-spot.vercel.app/review')
+        axios.get('https://stay-spot.vercel.app/review-s')
             .then(res => {
                 setReviews(res.data)
             })
     }, [])
-    //console.log(reviews);
+    console.log(reviews);
     return (
         <div>
             

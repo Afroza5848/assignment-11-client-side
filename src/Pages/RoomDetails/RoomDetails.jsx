@@ -32,7 +32,7 @@ const RoomDetails = () => {
         progressCircle.current.style.setProperty('--progress', 1 - progress);
         progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     };
-   
+  
     const handleConfirm = (id, preStatus, status) => {
         axios.patch(`https://stay-spot.vercel.app/rooms/${id}`, { status })
             .then(res => {
@@ -62,7 +62,7 @@ const RoomDetails = () => {
     }
 
     return (
-        <div className="container mx-auto px-2 grid lg:grid-cols-4 grid-cols-1 gap-6">
+        <div className="container mx-auto px-2 grid lg:grid-cols-4 grid-cols-1 gap-6 my-12">
             <div className="rounded-md shadow-md col-span-3  dark:bg-gray-50 dark:text-gray-800">
                 <div className="flex items-center justify-between p-3">
                     <div className="flex items-center space-x-2">
@@ -171,8 +171,12 @@ const RoomDetails = () => {
                         </p>
 
                         {/* Open the modal using document.getElementById('ID').showModal() method */}
-
-                       <Link to={user || "/login"}> <button id="book" className="btn px-5 py-3 bg-yellow-500" onClick={() => document.getElementById('my_modal_1').showModal()}>Book Now</button></Link>
+                        {
+                            status === 'Unavailable' ? <Link to={user || "/login"}> <button id="book" className="btn px-5 py-3 bg-yellow-500" disabled onClick={() => document.getElementById('my_modal_1').showModal()}>Book Now</button></Link> 
+                            :
+                            <Link to={user || "/login"}> <button id="book" className="btn px-5 py-3 bg-yellow-500" onClick={() => document.getElementById('my_modal_1').showModal()}>Book Now</button></Link>
+                        }
+                       {/* <Link to={user || "/login"}> <button id="book" className="btn px-5 py-3 bg-yellow-500" onClick={() => document.getElementById('my_modal_1').showModal()}>Book Now</button></Link> */}
 
                         <dialog id="my_modal_1" className="modal">
                             <div className="modal-box">

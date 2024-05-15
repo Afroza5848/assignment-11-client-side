@@ -1,5 +1,7 @@
 // import video from '../../assets/image/video.mp4'
 
+import Popup from "../Popup/Popup";
+
 const Banner = () => {
     return (
         <div>
@@ -26,6 +28,9 @@ const Banner = () => {
                             </span>
                             <span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-yellow-500 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
                         </a>
+                    </div>
+                    <div className="z-20">
+                        <Popup></Popup>
                     </div>
                 </div>
             </div>

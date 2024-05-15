@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import Review from "../Review/Review";
 
 const Bookings = ({ booking }) => {
-    const { status, room_id } = booking;
+    const { status, room_id,name } = booking;
     const [startDate, setStartDate] = useState(new Date());
     // handle delete------------------------
     const handleCancel = (_id, room_id, preStatus, status) => {
@@ -108,7 +108,7 @@ const Bookings = ({ booking }) => {
 
                                     <button className="btn btn-sm btn-circle bg-yellow-500 absolute right-2 top-2">✕</button>
                                 </form>
-                                <Review></Review>
+                               { <Review name={name}></Review>}
                             </div>
                         </dialog>
                     </div>

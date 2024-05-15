@@ -3,35 +3,23 @@ import { useContext } from "react";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-
-const Review = () => {
+const timestamp = Date.now();
+// eslint-disable-next-line react/prop-types
+const Review = ({name}) => {
 
     const { user } = useContext(AuthContext);
     const [rating, setRating] = useState(1);
     const [comment, setComment] = useState('');
-    
+    console.log(name);
     const handleSubmit = (event) => {
         event.preventDefault();
 
-
-       
-        // Generate timestamp
-        const timestamp = Date.now();
-         const date = new Date(timestamp);
-        // const day = date.getDate();
-        // const hours = date.getHours();
-        // const minutes = date.getMinutes();
-        // const seconds = date.getSeconds();
-        // const formatDate = `${day}/${hours}:${minutes}:${seconds}`
-        // console.log(formatDate);
-        // Create review object
-        console.log(date);
         const review = {
             username: user?.displayName,
             rating,
             comment,
-            timestamp
-            
+            timestamp: new Date().toLocaleDateString().split('/').join('-'),
+            room_name: name
         };
         console.log(review);
 
@@ -40,8 +28,6 @@ const Review = () => {
                 console.log(res.data);
                 toast.success('Post Review Successfully');
             })
-
-
         // Reset form fields
         setRating(1);
         setComment('');

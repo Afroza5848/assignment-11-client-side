@@ -22,7 +22,7 @@ const PostedReview = () => {
                         {reviews.map((review, index) => (
                             <div key={index} className="bg-white rounded-lg shadow-md p-4 mb-4">
                                 <p className="text-lg font-semibold">{review.username}</p>
-                                <p className="text-gray-500 mb-2">{review.formatDate}</p>
+                                <p className="text-gray-500 mb-2">{review.timestamp}</p>
                                 <div className="flex items-center">
                                     <span className="text-yellow-500 mr-1">{'★'.repeat(review.rating)}</span>
                                     <span className="text-gray-400">{'★'.repeat(5 - review.rating)}</span>
