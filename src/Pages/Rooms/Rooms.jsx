@@ -28,7 +28,7 @@ const Rooms = () => {
     return (
         <div className="container mx-auto px-2">
             <div className="my-10">
-                <h1>My Bookings Rooms</h1>
+                <h1 className="text-center text-5xl slab my-16 font-semibold">My Bookings Rooms</h1>
                 <label>
                     Min Price:
                     <input className="border py-3 rounded mx-3"
@@ -45,7 +45,7 @@ const Rooms = () => {
                         onChange={(e) => setMaxPrice(e.target.value)}
                     />
                 </label>
-                <button onClick={handleFilter} className="btn btn-secondary">Filter</button>
+                <button onClick={handleFilter} className="btn bg-yellow-500">Filter</button>
             </div>
             <div className="container mx-auto px-2 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7 my-8">
                 <Helmet>

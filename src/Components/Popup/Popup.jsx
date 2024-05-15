@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react';
 import { IoCloseCircleSharp } from "react-icons/io5";
-import offer from '../../assets/image/offer.json';
-import { useLottie } from 'lottie-react';
+import promo from '../../assets/image/promo.jpg';
+
 const Popup = () => {
-    const options = {
-        animationData: offer,
-        loop: true
-      };
-      const { View } = useLottie(options);   
+     
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -27,8 +23,8 @@ const Popup = () => {
               <div className="bg-white p-6 rounded-lg shadow-lg relative max-w-md mx-auto text-center">
                 <button className="absolute top-2 text-2xl right-2 text-gray-600 hover:text-gray-800" onClick={closePopup}><IoCloseCircleSharp /></button>
                 <h2 className="text-2xl font-bold mb-4 slab">Special Offer!</h2>
-                <div>{View}</div>
-                <p className='text-2xl'>Get 30% off on your first purchase. Use code: <strong className='text-yellow-500 slab'>WELCOME20</strong></p>
+                <img src={promo} alt="" />
+                <p className='text-2xl mt-4'>Get 30% off on your first purchase. Use code: <strong className='text-yellow-500 slab'>WELCOME20</strong></p>
               </div>
             </div>
           )

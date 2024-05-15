@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
-import { EffectCoverflow, Pagination } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 
 const AuthReview = () => {
     const [reviews, setReviews] = useState([]);
@@ -20,60 +20,41 @@ const AuthReview = () => {
     }, [])
     console.log(reviews);
     return (
-        <div className="container mx-auto px-2 grid lg:grid-cols-3 gap-8 md:grid-cols-2 grid-cols-1">
-
-            {
-                reviews.map((reviews, idx) => <Swiper key={idx}
+        <div className="container mx-auto px-2 my-20 ">
+             <div className="my-10">
+                <h2 className="text-center text-5xl slab font-semibold">People What Are Saying</h2>
+            </div>
+            <div className="w-full">
+                <Swiper
                     effect={'coverflow'}
                     grabCursor={true}
                     centeredSlides={true}
-                    slidesPerView={'auto'}
+                    slidesPerView={3}
+                    spaceBetween={30}
                     coverflowEffect={{
                         rotate: 50,
-                        stretch: 0,
+                        stretch: 4,
                         depth: 100,
                         modifier: 1,
-                        slideShadows: true,
+                        // slideShadows: true,
+                    }}
+                    loop={true}
+                    autoplay={{
+                        delay: 1000,
+                        disableOnInteraction: false,
                     }}
                     pagination={true}
-                    modules={[EffectCoverflow, Pagination]}
+                    modules={[Autoplay,  Pagination]}
                     className="mySwiper"
                 >
-                    <SwiperSlide>
-                        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-                    </SwiperSlide>
-                </Swiper>)
-
-
-            }
-
-
-
-
+                    {
+                        reviews?.map((review, idx) => <SwiperSlide key={idx}>
+                            <Reviewer review={review}></Reviewer>
+                        </SwiperSlide>)
+                    }
+                </Swiper>
+            </div>
+           
 
 
         </div>
