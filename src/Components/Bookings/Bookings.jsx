@@ -15,6 +15,8 @@ const Bookings = ({ booking,fetchBookings }) => {
    console.log(booking);
     // handle delete------------------------
     const handleCancel = (_id, room_id, preStatus, status) => {
+        // const today = new Date();
+        // const preDate = today - StartDate
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be Cancel this!",
