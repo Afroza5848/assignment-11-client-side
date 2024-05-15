@@ -64,7 +64,7 @@ const RoomDetails = () => {
             status,
             user_email: user?.email,
             user_name: user?.displayName,
-            startDate,
+            startDate: new Date().toLocaleDateString().split('/').join('-'),
             room_id:_id
         }
         axios.post('https://stay-spot.vercel.app/bookings', myRoom)

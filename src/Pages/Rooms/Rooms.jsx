@@ -6,8 +6,8 @@ import { Helmet } from "react-helmet-async";
 const Rooms = () => {
     // const rooms = useLoaderData();
     // console.log(rooms);
-    const [minPrice, setMinPrice] = useState('');
-    const [maxPrice, setMaxPrice] = useState('');
+    const [minPrice, setMinPrice] = useState(Number);
+    const [maxPrice, setMaxPrice] = useState(Number);
     const [rooms, setRooms] = useState([]);
 
     useEffect(() => {

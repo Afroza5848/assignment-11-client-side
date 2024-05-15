@@ -20,7 +20,7 @@ const AddRoom = () => {
         const photo2 = form.thumbnail2.value;
         const photo3 = form.thumbnail3.value;
         const photo4 = form.thumbnail4.value;
-        const price = form.price.value;
+        const price = parseInt(form.price.value);
         const size = form.size.value;
         const offer = form.offer.value;
         const user_name = user?.displayName;
@@ -97,7 +97,7 @@ const AddRoom = () => {
                             </div>
                             <div className="col-span-full sm:col-span-2">
                                 <label htmlFor="city" className="text-xl mulish">Per Night Price</label>
-                                <input id="itemName" type="text" name="price" placeholder=" Write your price" className="w-full pb-8 rounded-md focus:ring focus:ring-opacity-75  focus:dark:ring-orange-600 dark:text-gray-900 bg-white pt-2 pl-2 " />
+                                <input id="itemName" type="number" name="price" placeholder=" Write your price" className="w-full pb-8 rounded-md focus:ring focus:ring-opacity-75  focus:dark:ring-orange-600 dark:text-gray-900 bg-white pt-2 pl-2 " />
                             </div>
                             <div className="col-span-full sm:col-span-2">
                                 <label htmlFor="city" className="text-xl mulish">Room Size</label>

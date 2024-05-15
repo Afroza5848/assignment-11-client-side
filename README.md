@@ -1,8 +1,13 @@
-# React + Vite
+# Website Name: StaySpot
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Visit the live site: [StaySpot](https://stay-spot-7d4c9.web.app)
 
-Currently, two official plugins are available:
+# Selected Category:  assignment_category_0004
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# features and characteristics
+- User-friendly homepage design showcasing hotel rooms with images and videos.
+- The hotel's location is shown on an interactive map for convenient navigation.
+- Rooms page displaying available hotel room with server-side filtering by price range.
+- My Bookings page displaying booked rooms with options to cancel bookings and update dates.
+- Implementation of JWT authentication for secure access to private routes.
+- Review system enabling users to post reviews for booked rooms, displayed on the room details page.

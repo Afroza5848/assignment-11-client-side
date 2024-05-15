@@ -51,7 +51,7 @@ const Bookings = ({ booking,fetchBookings }) => {
         {/* Open the modal using document.getElementById('ID').showModal() method */ }
         e.preventDefault();
         console.log(startDate);
-        axios.patch(`https://stay-spot.vercel.app/bookings/${booking._id}`, { startDate })
+        axios.patch(`https://stay-spot.vercel.app/bookings/${booking._id}`, {startDate})
             .then(data => {
                 console.log(data.data);
                 fetchBookings(fetchBookings);
@@ -82,7 +82,7 @@ const Bookings = ({ booking,fetchBookings }) => {
                 </td>
                 <td>{booking.size} sq Ft</td>
                 <td>$ {booking.price}</td>
-                <td>{booking.startDate}</td>
+                <td>{new Date(booking.startDate).toLocaleDateString().split('/').join('-')}</td>
                 <td className=" flex flex-col items-center justify-center">
                     <div className=" flex items-center gap-3 justify-center lg:flex-row flex-col lg:mt-10">
                         <button onClick={() => handleCancel(booking._id, room_id, status, 'Available')} className="btn btn-error text-white">Cancel</button>

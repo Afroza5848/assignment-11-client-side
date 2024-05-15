@@ -39,7 +39,7 @@ const Room = ({ room }) => {
                         :
                         <button className="btn bg-yellow-500" disabled onClick={() => document.getElementById('my_modal_3').showModal()}>Add Review</button>
                 }
-                <dialog id="my_modal_3" className="modal">
+                {/* <dialog id="my_modal_3" className="modal">
                     <div className="modal-box">
                         <form method="dialog">
 
@@ -47,7 +47,7 @@ const Room = ({ room }) => {
                         </form>
                         <Review></Review>
                     </div>
-                </dialog>
+                </dialog> */}
 
             </div>
         </div>

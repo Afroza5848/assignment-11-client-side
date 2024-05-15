@@ -19,7 +19,8 @@ const Review = ({name}) => {
             rating,
             comment,
             timestamp: new Date().toLocaleDateString().split('/').join('-'),
-            room_name: name
+            room_name: name,
+            photoURL: user?.photoURL
         };
         console.log(review);
 
@@ -77,7 +78,7 @@ const Review = ({name}) => {
                     />
                 </div>
                 <div className="mb-4">
-                    <button type="submit" className="bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">
+                    <button type="submit" className="bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-indigo-600">
                         Submit Review
                     </button>
                 </div>
