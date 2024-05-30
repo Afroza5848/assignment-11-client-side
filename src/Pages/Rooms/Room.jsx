@@ -8,6 +8,7 @@ import Review from '../../Components/Review/Review';
 const Room = ({ room }) => {
     //posted review---------------------------------
     const [reviews, setReviews] = useState([]);
+    // const [count,setCount] = useState([])
     useEffect(() => {
         axios.get('https://stay-spot.vercel.app/review')
             .then(res => {
@@ -15,7 +16,10 @@ const Room = ({ room }) => {
             })
     }, [])
    
+   
     const reviewCount = reviews.filter(review => review.room_name === room.name)
+    
+    // console.log('amar review count', reviewCount);
     return (
         <div className="max-w-lg p-4 shadow-md dark:bg-gray-50 dark:text-gray-800">
             <div className="flex justify-between pb-4 border-bottom">
@@ -39,7 +43,7 @@ const Room = ({ room }) => {
                         :
                         <button className="btn bg-yellow-500" disabled onClick={() => document.getElementById('my_modal_3').showModal()}>Add Review</button>
                 }
-                {/* <dialog id="my_modal_3" className="modal">
+                <dialog id="my_modal_3" className="modal">
                     <div className="modal-box">
                         <form method="dialog">
 
@@ -47,7 +51,7 @@ const Room = ({ room }) => {
                         </form>
                         <Review></Review>
                     </div>
-                </dialog> */}
+                </dialog>
 
             </div>
         </div>

@@ -23,7 +23,6 @@ const RoomDetails = () => {
     
 
     useEffect(() => {
-
         getData()
     }, [])
     const getData = async () => {
@@ -187,7 +186,7 @@ const RoomDetails = () => {
 
                         {/* Open the modal using document.getElementById('ID').showModal() method */}
                         {
-                            status === 'Unavailable' ? <Link to={user || "/login"}> <button id="book" className="btn px-5 py-3 bg-yellow-500" disabled onClick={() => document.getElementById('my_modal_1').showModal()}>Book Now</button></Link> 
+                            status === 'Unavailable' ? <Link to={user || "/login"}> <button id="book" className="btn px-5 py-3 bg-yellow-500" disabled >Book Now</button></Link> 
                             :
                             <Link to={user || "/login"}> <button id="book" className="btn px-5 py-3 bg-yellow-500" onClick={() => document.getElementById('my_modal_1').showModal()}>Book Now</button></Link>
                         }
