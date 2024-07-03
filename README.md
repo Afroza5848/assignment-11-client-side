@@ -43,7 +43,7 @@
 - Git
 
 # Clone the repository:
-- git clone https://github.com/ChowdhuryFatema/tech-app-client.git
+- git clone https://github.com/Afroza5848/assignment-11-client-side.git
 - cd your-repository
 - Install dependencies:
 
